@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+# IMU 可视化工具 (IMU Visualizer)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+用于实时显示和分析惯性测量单元(IMU)数据的强大可视化工具。
 
-## Available Scripts
+## 功能特性
 
-In the project directory, you can run:
+- **实时数据可视化**：直观地展示来自IMU传感器的实时数据
+- **多维数据展示**：同时显示加速度、角速度、磁力计等多种传感器数据
+- **3D姿态可视化**：通过三维模型直观展示设备的空间姿态
+- **数据记录与回放**：支持记录传感器数据并进行时序轨迹分析
 
-### `npm start`
+## 安装指南
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 前提条件
+- Node.js (v18.0+)
+- npm 或 yarn
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 安装步骤
 
-### `npm test`
+1. 克隆仓库
+```bash
+git clone https://github.com/yourusername/imu-visualizer.git
+cd imu-visualizer
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. 安装依赖
+```bash
+npm install
+# 或
+yarn install
+```
 
-### `npm run build`
+3. 启动应用
+```bash
+npm start
+# 或
+yarn start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 贡献指南
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+欢迎提交问题报告和功能请求！如果您想贡献代码：
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Fork 本仓库
+2. 创建您的特性分支 (`git checkout -b feature/amazing-feature`)
+3. 提交您的更改 (`git commit -m 'Add some amazing feature'`)
+4. 推送到分支 (`git push origin feature/amazing-feature`)
+5. 开启一个 Pull Request
 
-### `npm run eject`
+## 许可证
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+本项目采用 MIT 许可证 - 详情请参阅 [LICENSE](LICENSE) 文件
