@@ -1,6 +1,6 @@
 # IMU 可视化工具 (IMU Visualizer)
 
-通过WebSocket接收IMU数据，用于实时显示和分析惯性测量单元(IMU)数据的强大可视化工具。
+通过WebSocket接收IMU数据，用于实时显示和分析惯性测量单元(IMU)数据的强大可视化工具，包含Web可视化界面和Android数据采集上传客户端。
 
 ![image-20250409140959518](https://ai-1258209752.cos.ap-shanghai.myqcloud.com/blog/image-20250409140959518.png)
 
@@ -10,38 +10,55 @@
 - **多维数据展示**：同时显示加速度、角速度、磁力计等多种传感器数据
 - **3D姿态可视化**：通过三维模型直观展示设备的空间姿态
 - **数据记录与回放**：支持记录传感器数据并进行时序轨迹分析
+- **跨平台支持**：提供Web可视化界面和Android数据采集客户端
 
-## 安装指南
+## 系统组件
 
-### 前提条件
-- Node.js (v18.0+)
-- npm 或 yarn
+### Web可视化端
 
-### 安装步骤
+Web端提供了丰富的IMU数据可视化功能，基于React和Three.js构建：
 
-1. 克隆仓库
-```bash
-git clone https://github.com/yourusername/imu-visualizer.git
-cd imu-visualizer
-```
+- **6DOF IMU可视化**：实时显示设备的六自由度姿态和位置
+- **3D模型渲染**：使用Three.js和React Three Fiber进行高性能3D渲染
+- **轨迹显示**：支持显示IMU设备的历史运动轨迹
+- **参数调整面板**：通过Leva控制面板，支持手动调整IMU姿态和位置参数
+- **WebSocket通信**：实时接收来自IMU数据服务器的数据流
+- **多设备管理**：支持同时连接和显示多个IMU设备的数据
+- **自适应布局**：响应式设计，适配不同屏幕尺寸
 
-2. 安装依赖
-```bash
-npm install
-# 或
-yarn install
-```
+#### 技术栈
+- React.js
+- Three.js 和 React Three Fiber
+- WebSocket
+- Leva (参数控制面板)
+- D3.js (数据图表)
 
-3. 启动应用
-```bash
-npm start
-# 或
-yarn start
-```
+### Android数据采集客户端
 
-### 演示视频
+Android客户端用于采集设备IMU传感器数据并实时上传到服务器：
 
-<video src="https://ai-1258209752.cos.ap-shanghai.myqcloud.com/blog/%E5%BD%95%E5%B1%8F2025-04-09%2014.07.11.mov"></video>
+- **实时数据采集**：采集设备的旋转矢量、加速度计和陀螺仪数据
+- **WebSocket数据上传**：通过WebSocket协议实时上传IMU数据
+- **四元数和位置显示**：在界面上实时显示当前的四元数和位置信息
+- **设备配置**：支持自定义设备ID和服务器URL
+- **连接状态指示**：直观显示与服务器的连接状态
+- **低功耗运行**：优化的传感器采样策略，减少电池消耗
+
+#### 技术栈
+- Kotlin
+- Android Jetpack (ViewModel, LiveData)
+- DataBinding
+- Android传感器API
+- WebSocket实现
+- 低通滤波器和积分算法
+
+## 项目灵感
+
+https://github.com/xioTechnologies/Gait-Tracking-With-x-IMU
+
+https://github.com/andrewadare/imu-visualizer
+
+[![3D Tracking with IMU](https://res.cloudinary.com/marcomontalbano/image/upload/v1744180918/video_to_markdown/images/youtube--6ijArKE8vKU-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://youtu.be/6ijArKE8vKU?si=AluGdJcCo6ELs7p6 "3D Tracking with IMU")
 
 ## IMU 数据格式规范
 
@@ -111,6 +128,40 @@ ws.send(JSON.stringify({
 }));
 ```
 
+## 安装与使用
+
+### Web可视化端
+
+1. 克隆仓库并安装依赖
+```bash
+git clone https://github.com/yourusername/imu-visualizer.git
+cd imu-visualizer
+npm install
+```
+
+2. 启动Web服务
+```bash
+npm start
+```
+
+3. 启动数据转发服务器
+```bash
+node server_transport.js
+```
+4. 在浏览器中访问 `http://localhost:3000`
+
+### Android客户端
+
+1. 使用Android Studio打开 `IMU_Upload_Android` 目录
+2. 构建并安装应用到Android设备
+3. 在应用中配置服务器URL和设备ID
+4. 点击"连接"按钮开始上传IMU数据
+
+
+### 演示视频
+
+<video src="https://ai-1258209752.cos.ap-shanghai.myqcloud.com/blog/%E5%BD%95%E5%B1%8F2025-04-09%2014.07.11.mov"></video>
+
 ## 模拟工具
 
 项目提供了两个辅助工具脚本：
@@ -127,7 +178,6 @@ node server_transport.js
 # 启动IMU数据模拟器
 node server_mock.js
 ```
-
 
 ## 贡献指南
 
