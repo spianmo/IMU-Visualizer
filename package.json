@@ -3,14 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-three/drei": "^10.0.6",
+    "@react-three/fiber": "^9.1.2",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "leva": "^0.10.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "react-use-websocket": "^4.13.0",
+    "stats.js": "^0.17.0",
+    "styled-components": "^6.1.17",
+    "three": "^0.175.0",
+    "web-vitals": "^2.1.4",
+    "ws": "^8.18.1"
   },
   "scripts": {
     "start": "react-scripts start",
