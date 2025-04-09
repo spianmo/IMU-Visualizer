@@ -160,7 +160,8 @@ node server_transport.js
 
 ### 演示视频
 
-<video src="https://ai-1258209752.cos.ap-shanghai.myqcloud.com/blog/%E5%BD%95%E5%B1%8F2025-04-09%2014.07.11.mov"></video>
+https://github.com/user-attachments/assets/813d045c-24a2-49aa-86fb-3cf21ccc1e0d
+
 
 ## 模拟工具
 
