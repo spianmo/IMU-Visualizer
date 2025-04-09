@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2023
+  ~ @Project:XRBaseStation
+  ~ @Author:Finger
+  ~ @FileName:activity_main.xml
+  ~ @LastModified:2023-08-11T12:03:09.528+08:00
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.teamhelper.imu.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        tools:context=".MainActivity">
+        <!-- file: BuiltInPlugins/TestIMU/src/main/res/layout/activity_main.xml -->
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ws_url_layout"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="WebSocket URL"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ws_url_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={viewModel.wsUrl}"
+                android:inputType="textUri" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/device_id_layout"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="设备ID"
+            app:layout_constraintTop_toBottomOf="@id/ws_url_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/device_id_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={viewModel.deviceId}"
+                android:inputType="text"
+                android:defaultValue="00000001" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- 新增连接状态指示器 -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/connection_status_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="@{viewModel.connectionStatus ? @android:color/holo_green_dark : @android:color/holo_red_dark}"
+            app:layout_constraintTop_toBottomOf="@id/device_id_layout">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/connection_status_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="连接状态:"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/connection_status_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@{viewModel.connectionStatus ? @string/connected : @string/disconnected}"
+                    android:textColor="@{viewModel.connectionStatus ? @android:color/holo_green_dark : @android:color/holo_red_dark}"
+                    app:layout_constraintStart_toEndOf="@id/connection_status_label"
+                    app:layout_constraintTop_toTopOf="@id/connection_status_label"
+                    tools:text="未连接" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/connection_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@id/connection_status_label" />
+
+                <TextView
+                    android:id="@+id/current_url_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="当前URL:"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/connection_divider" />
+
+                <TextView
+                    android:id="@+id/current_url_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@{viewModel.currentConnectedUrl}"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    app:layout_constraintStart_toEndOf="@id/current_url_label"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/current_url_label"
+                    tools:text="ws://192.168.0.138:8080" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/sensor_data_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            app:layout_constraintTop_toBottomOf="@id/connection_status_card">
+
+            <TextView
+                android:id="@+id/sensor_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="@{viewModel.sensorData}"
+                tools:text="传感器数据将显示在这里" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/connect_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:onClick="@{() -> viewModel.connect()}"
+            android:text="@{viewModel.connectionStatus ? @string/disconnect : @string/connect}"
+            app:layout_constraintTop_toBottomOf="@id/sensor_data_card" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
